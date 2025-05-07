@@ -1,0 +1,18 @@
+﻿# Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+
+# Ignore build output
+Debug/
+Release/
+x64/
+*.obj
+*.exe
+*.log
+
+# Ignore system files
+.DS_Store
+Thumbs.db
