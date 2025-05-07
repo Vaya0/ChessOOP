@@ -7,7 +7,7 @@ class Piece
 		virtual ~Piece() {};
 		virtual char getSymbol() const = 0;
 
-	private:
+	protected:
 	int colour; // 1 - white, 2 - black	
 };
 

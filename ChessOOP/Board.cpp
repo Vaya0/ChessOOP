@@ -1,4 +1,10 @@
 #include "Board.h"
+#include "Pawn.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "Queen.h"
+#include "King.h"
 
 Board::Board() {
 	//initialize all squares to nullptr
@@ -48,4 +54,13 @@ void Board::initializeBoard() {
 	// Example: place kings
 	board[0][4] = new King(2);
 	board[7][4] = new King(1);
+}
+
+Piece* Board::get(int row, int col) const {
+	return board[row][col];
+}
+
+void Board::set(int row, int col, Piece* piece) {
+	delete board[row][col];  // delete old piece if any
+	board[row][col] = piece;
 }

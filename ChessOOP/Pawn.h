@@ -3,6 +3,7 @@
 class Pawn :
     public Piece
 {
+public:
     Pawn(int colour);
 
     char getSymbol() const override;

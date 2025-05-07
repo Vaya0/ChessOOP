@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include "String.h"
 #include "Board.h"
 #include "Pawn.h"
 #include "Rook.h"
@@ -13,7 +15,7 @@ public:
 	Board board;
 	char gameField[18][9];//we will write the figuers as letters for now
 	//we need 9 rows for the white POV and 9 rows below for the black POV
-	int currPlayer = 2;
+	int player = 2;
 	bool isKingDead = false;
 
 	void startGame();

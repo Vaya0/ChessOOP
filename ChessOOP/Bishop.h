@@ -1,12 +1,12 @@
 #pragma once
 #include "Piece.h"
+
 class Bishop :
     public Piece
 {
-    Bishop(int colour) : Piece(colour) {};
+public:
+    Bishop(int colour);
 
-    char getSymbol() const override {
-        return colour == 1 ? 'B' : 'b';
-    }
+    char getSymbol() const override;
 };
 
