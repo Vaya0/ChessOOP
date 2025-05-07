@@ -1,17 +1,13 @@
 #pragma once
-#include "Pawn.h"
-#include "Knight.h"
-#include "Bishop.h"
-#include "Rook.h"
-#include "Queen.h"
-#include "King.h"
+#include "Piece.h"
 
 class Board
 {
 public:
+	Board();
+	~Board();
 	void initializeBoard();
 private:
-	Piece field[8][8];//num of squares on board
+	Piece* board[8][8];//num of squares on board
+	void free();
 };
-
-//if a square is empty we have the default piece without a name in it

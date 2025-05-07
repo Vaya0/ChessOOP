@@ -1,18 +1,13 @@
 #pragma once
-#include "String.h"
+
 class Piece
 {
 	public:
-		Piece();
-		Piece(const String& name, bool color);
-		const String& getName() const;
-		bool getColour() const;
-		void setName(const String& name);
-		void setColour(bool colour);
+		Piece(int colour) : colour(colour) {}
+		virtual ~Piece() {};
+		virtual char getSymbol() const = 0;
 
 	private:
-	String name;
-	bool colour; // 1 - white, 2 - black	
-
+	int colour; // 1 - white, 2 - black	
 };
 

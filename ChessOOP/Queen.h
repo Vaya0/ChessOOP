@@ -3,7 +3,10 @@
 class Queen :
     public Piece
 {
-	Queen() : Piece() {}
-	Queen(const String& name, bool colour) : Piece(name, colour) {}
+    Queen(int colour) : Piece(colour) {};
+
+    char getSymbol() const override {
+        return colour == 1 ? 'Q' : 'q';
+    }
 };
 

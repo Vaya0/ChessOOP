@@ -3,7 +3,10 @@
 class Bishop :
     public Piece
 {
-	Bishop() : Piece() {}
-	Bishop(const String& name, bool colour) : Piece(name, colour) {}
+    Bishop(int colour) : Piece(colour) {};
+
+    char getSymbol() const override {
+        return colour == 1 ? 'B' : 'b';
+    }
 };
 
