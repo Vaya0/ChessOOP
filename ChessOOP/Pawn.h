@@ -3,7 +3,8 @@
 class Pawn :
     public Piece
 {
-    Pawn() : Piece() {}
-    Pawn(const String& name, bool colour) : Piece(name, colour) {}
+    Pawn(int colour);
+
+    char getSymbol() const override;
 };
 

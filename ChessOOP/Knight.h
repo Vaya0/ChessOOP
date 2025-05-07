@@ -4,7 +4,8 @@ class Knight :
     public Piece
 {
 public:
-	Knight() : Piece() {}
-	Knight(const String& name, bool colour) : Piece(name, colour) {}
+    Knight(int colour);
+
+    char getSymbol() const override;
 };
 

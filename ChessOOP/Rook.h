@@ -3,7 +3,9 @@
 class Rook :
     public Piece
 {
-	Rook() : Piece() {}
-	Rook(const String& name, bool colour) : Piece(name, colour) {}
+public:
+	Rook(int colour);
+
+    char getSymbol() const override;
 };
 

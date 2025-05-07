@@ -1,80 +1,51 @@
 #include "Board.h"
 
 Board::Board() {
-	initializeBoard();
+	//initialize all squares to nullptr
+	for (int row = 0; row < 8; ++row)
+		for (int col = 0; col < 8; ++col)
+			board[row][col] = nullptr;
 }
 Board::~Board() {
+	free();
+}
 
+void Board::free() {
+    for (int row = 0; row < 8; ++row)
+        for (int col = 0; col < 8; ++col) {
+            delete board[row][col];
+            board[row][col] = nullptr;
+        }
 }
 void Board::initializeBoard() {
 
-	//white pieces
-	field[7][0].setName("Rook");
-	field[7][0].setColour("1");
-	field[7][1].setName("Knight");
-	field[7][1].setColour("1");
-	field[7][2].setName("Bishop");
-	field[7][2].setColour("1");
-	field[7][3].setName("Queen");
-	field[7][3].setColour("1");
-	field[7][4].setName("King");
-	field[7][4].setColour("1");
-	field[7][5].setName("Bishop");
-	field[7][5].setColour("1");
-	field[7][6].setName("Kight");
-	field[7][6].setColour("1");
-	field[7][7].setName("Rook");
-	field[7][7].setColour("1");
+	free();
 
-	field[6][0].setName("Pawn");
-	field[6][0].setColour("1");
-	field[6][1].setName("Pawn");
-	field[6][1].setColour("1");
-	field[6][2].setName("Pawn");
-	field[6][2].setColour("1");
-	field[6][3].setName("Pawn");
-	field[6][3].setColour("1");
-	field[6][4].setName("Pawn");
-	field[6][4].setColour("1");
-	field[6][5].setName("Pawn");
-	field[6][5].setColour("1");
-	field[6][6].setName("Pawn");
-	field[6][6].setColour("1");
-	field[6][7].setName("Pawn");
-	field[6][7].setColour("1");
+	// Example: place white and black pawns
+	for (int i = 0; i < 8; ++i) {
+		board[1][i] = new Pawn(2);
+		board[6][i] = new Pawn(1);
+	}
 
-	//black pieces
-	field[0][0].setName("Rook");
-	field[0][0].setColour("2");
-	field[0][1].setName("Knight");
-	field[0][1].setColour("2");
-	field[0][2].setName("Bishop");
-	field[0][2].setColour("2");
-	field[0][3].setName("Queen");
-	field[0][3].setColour("2");
-	field[0][4].setName("King");
-	field[0][4].setColour("2");
-	field[0][5].setName("Bishop");
-	field[0][5].setColour("2");
-	field[0][6].setName("Knight");
-	field[0][6].setColour("2");
-	field[0][7].setName("Rook");
-	field[0][7].setName("2");
-
-	field[1][0].setName("Pawn");
-	field[1][0].setColour("2");
-	field[1][1].setName("Pawn");
-	field[1][1].setColour("2");
-	field[1][2].setName("Pawn");
-	field[1][2].setColour("2");
-	field[1][3].setName("Pawn");
-	field[1][3].setColour("2");
-	field[1][4].setName("Pawn");
-	field[1][4].setColour("2");
-	field[1][5].setName("Pawn");
-	field[1][5].setColour("2");
-	field[1][6].setName("Pawn");
-	field[1][6].setColour("2");
-	field[1][7].setName("Pawn");
-	field[1][7].setColour("2");
+	// Example: place rooks
+	board[0][0] = new Rook(2);
+	board[0][7] = new Rook(2);
+	board[7][0] = new Rook(1);
+	board[7][7] = new Rook(1);
+	// Example: place knights
+	board[0][1] = new Knight(2);
+	board[0][6] = new Knight(2);
+	board[7][1] = new Knight(1);
+	board[7][6] = new Knight(1);
+	// Example: place bishops
+	board[0][2] = new Bishop(2);
+	board[0][5] = new Bishop(2);
+	board[7][2] = new Bishop(1);
+	board[7][5] = new Bishop(1);
+	// Example: place queens
+	board[0][3] = new Queen(2);
+	board[7][3] = new Queen(1);
+	// Example: place kings
+	board[0][4] = new King(2);
+	board[7][4] = new King(1);
 }

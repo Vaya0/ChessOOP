@@ -3,7 +3,8 @@
 class King :
     public Piece
 {
-    King() : Piece() {}
-	King(const String& name, bool colour) : Piece(name, colour) {}
+    King(int colour);
+
+    char getSymbol() const override;
 };
 
