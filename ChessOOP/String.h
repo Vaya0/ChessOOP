@@ -7,6 +7,8 @@ public:
     String();
     String(const char* data);
 
+    String(std::wstring::const_iterator begin, std::wstring::const_iterator end);
+    
     String(const String& other);
     String(String&& other) noexcept;
 
@@ -21,6 +23,7 @@ public:
     const char* c_str() const;
 
     String& operator+=(const String& other);
+    String& operator+=(char c);
 
     char& operator[](size_t index);
     const char& operator[](size_t index) const;

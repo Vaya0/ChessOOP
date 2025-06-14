@@ -1,6 +1,7 @@
 #include "String.h"
 #include <cstring>
 #include <algorithm>
+#include <sstream> 
 #pragma warning (disable : 4996)
 
 
@@ -35,9 +36,34 @@ String::String(size_t stringLength)
 {
     _allocatedDataSize = dataToAllocByStringLen(stringLength);
     _data = new char[_allocatedDataSize];
-    _size = 0;
+    _size = stringLength-1;
     _data[0] = '\0';
 }
+
+String::String(std::wstring::const_iterator begin, std::wstring::const_iterator end) {
+    try {
+        size_t distance = std::distance(begin, end);
+        _size = distance;
+        _allocatedDataSize = dataToAllocByStringLen(_size);
+        _data = new char[_allocatedDataSize];
+
+        size_t i = 0;
+        for (auto it = begin; it != end; ++it, ++i) {
+            if (i >= _allocatedDataSize - 1) {
+                throw std::length_error("Error, buffer overrun detected during iteration.");
+            }
+            _data[i] = static_cast<char>(*it);
+        }
+        _data[_size] = '\0';
+    }
+    catch (const std::length_error& e) {
+        std::cerr << "String construction failed: " << e.what() << std::endl;
+        _data = nullptr;
+        _size = 0;
+        _allocatedDataSize = 0;
+    }
+}
+
 
 String::String(const String& other)
 {
@@ -47,7 +73,6 @@ String::String(String&& other) noexcept
 {
     moveFrom(std::move(other));
 }
-
 
 void String::moveFrom(String&& other)
 {
@@ -112,6 +137,18 @@ String& String::operator+=(const String& other)
     std::strncat(_data, other._data, other.getSize());
 
     _size = getSize() + other.getSize();
+    return *this;
+}
+
+String& String::operator+=(char c)
+{
+    if (getSize() + 2 > _allocatedDataSize)  // +2 for char + null terminator
+        resize(dataToAllocByStringLen(getSize() + 1));
+
+    _data[_size] = c;
+    _data[_size + 1] = '\0';
+    _size++;
+
     return *this;
 }
 
